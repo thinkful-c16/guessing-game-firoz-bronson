@@ -4,6 +4,7 @@ import Header from './header';
 import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
+import GuessForm from './guess-form';
 
 export default class Game extends React.Component {
     constructor() {
@@ -20,7 +21,14 @@ export default class Game extends React.Component {
         //restart game
     }
 
-    feedback() {
+    currentGuess = e => {  
+        e.prevent.default();
+        this.setState({
+            currentGuess: '' 
+        })
+    }
+
+    currentfeedback() {
         //all possible feedback
     }    
 
@@ -41,6 +49,7 @@ export default class Game extends React.Component {
                 <GuessSection feedback="Make your guess!" />
                 <GuessCount count={3} />
                 <GuessList guesses={[10, 15, 25]} />
+                <GuessForm currentGuess={this.state} />
             </div>
         );
     }
