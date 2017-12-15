@@ -9,10 +9,10 @@ export default function Header(props) {
     return (
         <header>
             <TopNav 
-            newGame={() => props.refreshGame()}/>
+            newGame={props.refreshGame}/>
             {/* <InfoModal /> */}
             <div className="gamebox">
-            <h1>HOT or COLD</h1>
+                <h1>HOT or COLD</h1>
             </div>
         </header>
     );

@@ -50,12 +50,14 @@ export default class Game extends React.Component {
           const difference = Math.abs(this.state.guess-this.state.answer)
           let feedback;
 
-          if (isNaN(this.state.guess)) {
-            this.setState({feedback: `Please enter a NUMBER`})
-            return;
-            }
-            else if (difference >= 60) {
-              this.state.feedback = `Cold Cold Cold`
+        //   if (isNaN(this.state.guess)) {
+        //     this.setState({feedback: `Please enter a NUMBER`})
+        //     return;
+//            }
+
+// ===== DIRECT STATE MUTATION- FIX UPON REVISION =====
+            if (difference >= 60) {
+              this.setState.feedback = 'Cold Cold Cold'
             }
             else if (difference >= 50) {
                 this.state.feedback = `Cold`
@@ -72,15 +74,12 @@ export default class Game extends React.Component {
             else {
             this.state.feedback = `Ding Ding Ding!! You guessed it!`
           }
-
-          //compare to see if guess is correct here
-          //update state here w/feed back
     }
 
     render() {
         return (
             <div>
-                <Header newGame={() => {this.refreshGame}}/>
+                <Header newGame={this.state.refreshGame}/>
             <div className="layout">
                 
                 <GuessSection feedback={this.state.feedback}/>
