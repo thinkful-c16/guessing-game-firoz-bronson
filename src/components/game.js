@@ -12,7 +12,7 @@ export default class Game extends React.Component {
         this.state = {
             answer: Math.round(Math.random()*100),
             guess: '',
-            feedback: ['Make your guess!'],
+            feedback: 'Guess a number!',
             guessHistory: [],
         }
     }
@@ -34,7 +34,7 @@ export default class Game extends React.Component {
       
     guessHistory = (e) => {
         this.setState({
-            guess: parseInt(e.target.value)
+            guess: parseInt(e.target.value, 10)
         });
        
     }
@@ -48,32 +48,30 @@ export default class Game extends React.Component {
           console.log(this.state.answer)  //so developer can see what the answer is
 
           const difference = Math.abs(this.state.guess-this.state.answer)
-          let feedback;
+          let feedbackMsg;
 
-        //   if (isNaN(this.state.guess)) {
-        //     this.setState({feedback: `Please enter a NUMBER`})
-        //     return;
-//            }
 
-// ===== DIRECT STATE MUTATION- FIX UPON REVISION =====
-            if (difference >= 60) {
-              this.setState.feedback = 'Cold Cold Cold'
+          if (difference >= 60) {
+                feedbackMsg = 'Cold Cold Cold'
             }
             else if (difference >= 50) {
-                this.state.feedback = `Cold`
+                feedbackMsg = `Cold`
             }
             else if (difference >= 30) {
-                this.state.feedback = `Gettin' Warmer`
+                feedbackMsg = `Gettin' Warmer`
             }
             else if (difference >= 20) {
-                this.state.feedback = `Warmer`
+                feedbackMsg = `Warmer`
             } 
             else if (difference >= 1) {
-                this.state.feedback = `Hot`
+                feedbackMsg = `Hot`
             }  
             else {
-            this.state.feedback = `Ding Ding Ding!! You guessed it!`
+            feedbackMsg = `Ding Ding Ding!! You guessed it!`
           }
+          this.setState({
+              feedback: feedbackMsg
+          })
     }
 
     render() {

@@ -6,7 +6,7 @@ export default function GuessForm(props) {
         return (
             <div className="gamebox">
             <form onSubmit={props.onSubmit}>
-                <input type="text" name="userGuess" id="userGuess"
+                <input type="number" name="userGuess" id="userGuess"
                     className="text" maxLength="3" autoComplete="off"
                     placeholder="Enter your Guess" 
                     value={props.guess}

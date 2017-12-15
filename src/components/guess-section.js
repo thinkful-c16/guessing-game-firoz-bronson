@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GuessForm from './guess-form';
+//import GuessForm from './guess-form';
 
 import './guess-section.css';
 
