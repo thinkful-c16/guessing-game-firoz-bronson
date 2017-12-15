@@ -10,10 +10,11 @@ export default class Game extends React.Component {
     constructor() {
         super();
         this.state = {
-            currentGuess: '',
-            currentFeedback: [],
+            number: '',
+            guess: '',
+            feedback: [],
             guessHistory: [],
-            guessCount: ''
+            // guessCount: ''
         }
     }
 
@@ -28,18 +29,31 @@ export default class Game extends React.Component {
         })
     }
 
-    //take value from guess input field, use push to add to array in guess history 
-    guessHistory() {
+    // guessHistory() {
+    //     //take value from guess input field, use push to add to array in guess history 
         
-    }
+    // }
 
-    guessCount() {
-        //count the guess history array
-    }
+    // guessCount() {
+    //     //count the guess history array
+    // }
 
     currentfeedback() {
         //all possible feedback
     }    
+
+    onChange = (e) => {
+        this.setState({
+            guess: e.target.value
+        }) ;
+    }
+    onSubmitGuess = (e) => {
+        e.preventDefault();
+          this.setState({
+              guessHistory: [...this.state.guessHistory,this.state.guess],
+              guess: ''
+          })
+    }
 
 
     render() {
@@ -48,12 +62,16 @@ export default class Game extends React.Component {
             <div>
                 <Header />
                 <GuessSection feedback="Make your guess!" />
-                <GuessCount count={3} />
-                <GuessList guesses={[10, 15, 25]} />
-                <GuessForm currentGuess={e => (this.currentGuessF(e))} />
+                <GuessCount count={this.state.guessHistory.length} />
+                <GuessList guesses={this.state.guessHistory} />
+                <GuessForm guess={this.state.guess}
+                onChange={this.onChange}
+                onSubmit={this.onSubmitGuess} />
             </div>
         );
     }
 }
 
+
+//}currentGuess={e => (this.currentGuessF(e))}
 

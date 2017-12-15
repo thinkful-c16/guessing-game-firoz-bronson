@@ -2,36 +2,26 @@ import React from 'react';
 
 import './guess-form.css';
 
-export default class GuessForm extends React.Component {
+export default function GuessForm(props) {
 
-    // onSubmit = () => {
-    //     e.prevent.default();
-    //     console.log(this(e.target.value))
-
-    // }
-
-    handle() {
-        this.props.currentGuess(this.refs.userInput.value)
-        this.refs.userInput.value = ''
-    }
-
-    render() {
+    
         return (
-            <form >
+            <form 
+            onSubmit={props.onSubmit}
+            >
                 <input type="text" name="userGuess" id="userGuess"
                     className="text" maxLength="3" autoComplete="off"
-                    placeholder="Enter your Guess" ref="userInput" required 
+                    placeholder="Enter your Guess" 
+                    value={props.guess}
+                    onChange={props.onChange}
+                    required 
                     />
-                <input type="button" id="guessButton" className="button" name="submit" value="guess"
-                onClick={() => this.handle()}
-                />
+                
+                <input className="button" id="guessButton" type="submit" value="Guess"/>
             </form>
         );
-    }
-   
+       
 };
 
 
-// onSubmit={ 
-//     e => props.currentGuess(e.target.value)
-//    }
+// onClick={() => this.handle()}
