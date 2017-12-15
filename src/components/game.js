@@ -10,16 +10,20 @@ export default class Game extends React.Component {
     constructor() {
         super();
         this.state = {
-            answer: Math.round(Math.random()*100 +1),
+            answer: Math.round(Math.random()*100),
             guess: '',
-            feedback: [],
+            feedback: ['Make your guess!'],
             guessHistory: [],
-            // guessCount: ''
         }
     }
 
     refreshGame() {
-        //restart game
+        this.setState({
+            answer: Math.round(Math.random()*100),
+            guess: '',
+            feedback: [],
+            guessHistory: [],
+        })
     }
 
     currentGuessF(e) {  
@@ -28,11 +32,11 @@ export default class Game extends React.Component {
         })
     }
       
-
     guessHistory = (e) => {
         this.setState({
             guess: parseInt(e.target.value)
-        }) ;
+        });
+       
     }
     onSubmit = (e) => {
         e.preventDefault();
@@ -40,10 +44,17 @@ export default class Game extends React.Component {
               guessHistory: [...this.state.guessHistory,this.state.guess],
               guess: '' //clearing input field after guess is submitted
           })
-          console.log(this.state.answer)
+          
+          console.log(this.state.answer)  //so developer can see what the answer is
+
           const difference = Math.abs(this.state.guess-this.state.answer)
           let feedback;
-            if (difference >= 60) {
+
+          if (isNaN(this.state.guess)) {
+            this.setState({feedback: `Please enter a NUMBER`})
+            return;
+            }
+            else if (difference >= 60) {
               this.state.feedback = `Cold Cold Cold`
             }
             else if (difference >= 50) {
@@ -52,17 +63,14 @@ export default class Game extends React.Component {
             else if (difference >= 30) {
                 this.state.feedback = `Gettin' Warmer`
             }
-            
             else if (difference >= 20) {
-                this.state.feedback = `Even Warmer`
+                this.state.feedback = `Warmer`
             } 
-            
             else if (difference >= 1) {
                 this.state.feedback = `Hot`
             }  
-            
             else {
-            this.state.feedback = `Ding Ding Ding!!  You Guessed It!!`
+            this.state.feedback = `Ding Ding Ding!! You guessed it!`
           }
 
           //compare to see if guess is correct here
@@ -72,14 +80,16 @@ export default class Game extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header newGame={() => {this.refreshGame}}/>
+            <div className="layout">
+                
                 <GuessSection feedback={this.state.feedback}/>
                 <GuessForm guess={this.state.guess}
                 onChange={this.guessHistory}
                 onSubmit={this.onSubmit} />
                 <GuessCount count={this.state.guessHistory.length} />
                 <GuessList guesses={this.state.guessHistory} />
-                
+                </div>
             </div>
         );
     }

@@ -3,9 +3,8 @@ import React from 'react';
 import './guess-form.css';
 
 export default function GuessForm(props) {
-   //console.log(props);
         return (
-            
+            <div className="gamebox">
             <form onSubmit={props.onSubmit}>
                 <input type="text" name="userGuess" id="userGuess"
                     className="text" maxLength="3" autoComplete="off"
@@ -17,6 +16,7 @@ export default function GuessForm(props) {
                 
                 <input className="button" id="guessButton" type="submit" value="Guess"/>
             </form>
+            </div>
             
         );
        

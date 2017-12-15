@@ -2,6 +2,19 @@
    Common Styles
 ---------------------------------------------------------------------------------*/
 /*float styles*/
+
+.gamebox {
+	display: block;
+	width: 390px;
+	margin: auto;
+}
+.layout {
+	width: 390px;
+	margin: auto;
+	background-color: #394264;
+
+}
+
 .clearfix:before,
 .clearfix:after {
     content: " "; /* 1 */
