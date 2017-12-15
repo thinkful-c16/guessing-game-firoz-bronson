@@ -55,18 +55,19 @@ export default class Game extends React.Component {
           })
     }
 
-
     render() {
         
         return (
             <div>
                 <Header />
+               
                 <GuessSection feedback="Make your guess!" />
-                <GuessCount count={this.state.guessHistory.length} />
-                <GuessList guesses={this.state.guessHistory} />
                 <GuessForm guess={this.state.guess}
                 onChange={this.onChange}
                 onSubmit={this.onSubmitGuess} />
+                <GuessCount count={this.state.guessHistory.length} />
+                <GuessList guesses={this.state.guessHistory} />
+                
             </div>
         );
     }

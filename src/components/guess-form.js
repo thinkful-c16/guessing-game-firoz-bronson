@@ -6,6 +6,7 @@ export default function GuessForm(props) {
 
     
         return (
+            
             <form 
             onSubmit={props.onSubmit}
             >
@@ -19,9 +20,14 @@ export default function GuessForm(props) {
                 
                 <input className="button" id="guessButton" type="submit" value="Guess"/>
             </form>
+            
+            
         );
        
 };
 
 
-// onClick={() => this.handle()}
+
+
+
+
